@@ -1,24 +1,37 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  
-    const user_id = localStorage.getItem('guest_id');
-  
-    try {
+  const user_id = localStorage.getItem('guest_id');
+
+  // Check if the user_id exists in localStorage
+  if (!user_id) {
+      pushAlert('alert', 'User ID not found in localStorage');
+      return;
+  }
+
+  try {
       const response = await fetch(`https://datadonor-webapp.vercel.app/accounts/profiles/?user_id=${user_id}`);
+      
       if (!response.ok) {
-        throw new Error('Failed to fetch user profile');
+          throw new Error('Failed to fetch user profile');
       }
+
       const data = await response.json();
-  
-      // Ensure the response contains at least one profile
-      if (data && data.length > 0) {
-        profileAdd(data[0]); // Assuming the first profile is the one we need
+
+      // Log the response data to understand its structure
+      console.log(data);
+      
+      // Ensure the response contains the expected data
+      if (data && Array.isArray(data) && data.length > 0) {
+          profileAdd(data[0]); // Assuming the first profile is the one we need
       } else {
-        pushAlert('alert','No profile data found.');
+          pushAlert('alert', 'No profile data found or unexpected data structure.');
       }
-    } catch (error) {
-      console.error(error);
-    }
-  });
+
+  } catch (error) {
+      console.error('Error:', error);
+      pushAlert('alert', error.message);
+  }
+});
+
   
   // Function to populate profile data in the HTML
   const profileAdd = (profile) => {

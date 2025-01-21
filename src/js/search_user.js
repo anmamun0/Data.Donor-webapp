@@ -139,7 +139,7 @@ const searchResult = (data, search) => {
                 </div>
                 </a> 
               
-              <a href="/guest_profile.html" target="_blank" > 
+              <a href="/guest_profile.html" target="_blank"  onclick="guestProfile('${profile.user_id}')"> 
                 <div>
                   <span class="relative inline-block">
                     <span class="text-lg font-semibold text-gray-800">${profile.first_name} ${profile.last_name}</span>
@@ -158,7 +158,7 @@ const searchResult = (data, search) => {
 
               <div class="ml-auto">
                 <button class="px-5 py-2 bg-gray-300 text-gray-800 hover:text-teal-700 rounded-lg shadow focus:outline-none focus:ring focus:ring-blue-300">
-                  <a href="/guest_profile.html" target="_blank"  onclick="userInfoModel('${profile.user_id}')">Contact</a>
+                  <a href="/guest_profile.html" target="_blank"  onclick="guestProfile('${profile.user_id}')">Contact</a>
                 </button>
               </div>
             </li>
@@ -170,7 +170,8 @@ allUserProfile({});
 
 
 const userInfoModel = (user_id) => {
-  localStorage.setItem('guest_id', user_id);
+  localStorage.setItem('guest_id', user_id); 
+  console.log(user_id);
 };
 
 
