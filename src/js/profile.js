@@ -467,7 +467,7 @@ const loadALLAcceptedEvents = (userId) => {
                           <h3 class="text-lg font-semibold text-gray-800">${event.title}</h3>
                           <div class="flex justify-between items-center">
                             <p class="text-xs text-gray-600">Location: <span class="font-medium">${event.location}</span></p>
-                            <span class="text-xs font-bold text-red-600 px-2 py-1 bg-red-100 rounded-full  absolute top-2 right-2 ">AB-</span>
+                            <span class="text-xs font-bold text-red-600 px-2 py-1 bg-red-100 rounded-full  absolute top-2 right-2 ">${event.blood}</span>
                           </div>
                           <p class="text-xs text-gray-600">Date: <span class="font-medium">${event.event_date}</span></p>
                           <div class="flex justify-between items-center gap-4 pt-2 mt-2 border-t border-gray-200">
