@@ -48,11 +48,11 @@
 
     <!-- Blood Group Summary -->
     <div class="bg-white shadow-lg rounded-lg p-6 mb-12 pb-10 px-12">
-      <div class="flex justify-between pb-4 "> 
+      <div class="md:flex justify-between pb-4 "> 
 
         <h2 class="text-2xl font-semibold text-gray-800  ">Recipient Blood Summary</h2>
 
-        <div class="flex gap-6 space-x-6 text-md px-2">
+        <div class="flex gap-6 space-x-6 text-md px-2 py-4 md:py-0 justify-end">
               <div class="search-event-container">
                 <label for="event-date" class="block text-sm font-medium text-gray-600 px-2">Search Event by Date</label>
                 <div class="flex items-center space-x-2">
@@ -74,7 +74,7 @@
 
       <h1 id="testing" class="hidden">Testing </h1>
 
-      <div class="sm:grid grid-cols-2 md:grid-cols-4 gap-6 space-y-4 sm:space-y-0">
+      <div class="sm:grid grid-cols-2 md:grid-cols-4   gap-6 space-y-4 sm:space-y-0">
         <!-- Single Blood Group Button -->
         <button onclick="analysisEvent('A+')" 
           class="bg-gray-100 hover:scale-105 border-[1px] border-transparent hover:border-gray-400 p-4 rounded-lg text-center transition duration-300">
@@ -122,7 +122,7 @@
 
     <!-- Event List Header -->
     <div class="flex justify-between items-center mb-6">
-      <h2 class="text-3xl font-semibold text-gray-800">Blood Request Events</h2>
+      <h2 class="text-md lg:text-3xl font-semibold text-gray-800">Blood Request Events</h2>
       <a href="javascript:void(0);" onclick="showModal()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition duration-300">
         + Create Request
     </a>

@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                   />
                 </div>
                 </a>
-                <div class='w-full flex justify-between gap-8'>
+                <div class='w-full md:flex justify-between gap-8'>
                 <a onclick="guestProfile(${data[0].id}); event.stopPropagation()" class="cursor-pointer"> 
                   <div> 
                     <p class="text-gray-800 font-medium">${user.user || "Anonymous"}</p>

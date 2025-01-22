@@ -34,7 +34,7 @@ const upperHeaderControl = () =>
             <!-- Hamburger Menu for Mobile -->
             <div class="lg:hidden">
                 <button id="hamburger-menu" class="text-gray-900 focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
@@ -42,21 +42,21 @@ const upperHeaderControl = () =>
             </div>
 
             <!-- Navigation Menu (Desktop) -->
-            <nav class="hidden lg:flex space-x-6  ">
-                <a href="/index.html" class="hover:text-red-600 transition duration-300 ">Home</a>
+            <nav class="hidden lg:flex space-x-6 text-lg ">
+                <a href="/index.html" class="hover:text-red-600  transition duration-300 ">Home</a>
                 <a href="/event_blood.html" class="hover:text-red-600 transition duration-300">Recipient Requests</a>
                 <a href="/search_user.html" class="hover:text-red-600 transition duration-300">Find Donors</a>
             </nav>
 
             <!-- Mobile Navigation Menu -->
             <nav id="mobile-nav"
-                class="z-20  gap-4 text-center lg:hidden absolute top-0 left-0 right-0 bg-gradient-to-r from-teal-400 to-teal-300  p-6 space-y-4 hidden">
-                <a href="/index.html" class="px-2 hover:text-red-600 transition duration-300">Home</a>
-                <a href="/event_blood.html" class="px-2 hover:text-red-600  transition duration-300">Donate Blood</a>
-                <a href="/search_user.html" class="px-2 hover:text-red-600  transition duration-300">Find Donors</a>
+                class="z-20 text-lg gap-4 text-center lg:hidden absolute top-0 left-0 right-0 bg-red-500 text-white font-smallbold p-10 space-y-4 hidden">
+                <a href="/index.html" class="px-2 hover:text-gray-600 transition duration-300">Home</a>
+                <a href="/event_blood.html" class="px-2 hover:text-gray-600  transition duration-300">Donate Blood</a>
+                <a href="/search_user.html" class="px-2 hover:text-gray-600  transition duration-300">Find Donors</a>
                  <!-- Close Button -->
                 <button id="close-menu" class="absolute top-2 right-4 font-bold text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 font-bold rounded-full bg-red-500" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -74,7 +74,7 @@ const upperHeaderControl = () =>
         <!-- Hamburger Menu for Mobile -->
         <div class="lg:hidden">
             <button id="hamburger-menu" class="text-gray-900 focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
@@ -90,13 +90,13 @@ const upperHeaderControl = () =>
 
         <!-- Mobile Navigation Menu -->
         <nav id="mobile-nav"
-            class="z-20  gap-4 text-center lg:hidden absolute top-0 left-0 right-0 bg-gradient-to-r from-teal-400 to-teal-300  p-6 space-y-4 hidden">
-            <a href="/index.html" class="px-2 hover:text-red-600 transition duration-300">Home</a>
-            <a href="/event_blood.html" class="px-2 hover:text-red-600  transition duration-300">Donate Blood</a>
-            <a href="/search_user.html" class="px-2 hover:text-red-600  transition duration-300">Find Donors</a>
+            class="z-20  gap-4 text-center lg:hidden absolute top-0 left-0 right-0 bg-red-500 text-white  font-smallbold   p-10 space-y-4 hidden">
+            <a href="/index.html" class="px-2 hover:text-gray-600 transition duration-300">Home</a>
+            <a href="/event_blood.html" class="px-2 hover:text-gray-600  transition duration-300">Donate Blood</a>
+            <a href="/search_user.html" class="px-2 hover:text-gray-600  transition duration-300">Find Donors</a>
              <!-- Close Button -->
-            <button id="close-menu" class="absolute top-2 right-4 font-bold text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+            <button id="close-menu" class="absolute top-2 right-4 hover:scale-105 font-bold text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 font-bold rounded-full bg-red-500 border-2 " fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -204,9 +204,9 @@ const downHeaderControl = () => {
     {  
         headerAuthentication.innerHTML =
         `
-            <nav class=" lg:flex space-x-6" id=""> 
-                <a href="/login.html" class="hover:text-teal-600 transition duration-300">Login</a>
-                <a href="/register.html" class="hover:text-teal-600 transition duration-300">Register</a> 
+            <nav class=" lg:flex space-x-4" id=""> 
+                <a href="/login.html" class="text-lg font-semibold  border-[1px] border-transparent hover:border-gray-500 hover:text-red-500 hover:bg-gray-200 px-4 py-3 rounded-lg transition duration-300">Login</a>
+                <a href="/register.html" class="text-lg font-semibold  border-[1px] border-transparent hover:border-gray-500  hover:text-red-500 hover:bg-gray-200 px-4 py-3 rounded-lg transition duration-300">Register</a> 
             </nav> 
         `;    
     }
