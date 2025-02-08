@@ -4,8 +4,7 @@ if ('token' in localStorage)
   window.location.href = 'index.html'
 }
 
-pushAlert('warning', 'Please Login!');
-const loginForm = document.getElementById('loginForm');
+ const loginForm = document.getElementById('loginForm');
 const errorMsg = document.getElementById('errorMsg');
 
 loginForm.addEventListener('submit', async (event) => {

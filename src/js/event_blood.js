@@ -58,9 +58,13 @@ const showAllEvent = (data,filter={}) => {
               
                
 
-          <div class="bg-white rounded-lg shadow-lg p-6" onclick="showViewModal('${event.id}','${user_id}')">
+          <div class="bg-white rounded-lg shadow-lg p-6">
           <!-- Title -->
-          <h3 class="text-2xl font-semibold text-gray-800">${event.title}</h3>
+
+         <a href="./view_event.html"  onclick="localStorage.setItem('view_event',${event.id})"> 
+            <h3 class="text-2xl font-semibold hover:text-red-500 text-gray-800">${event.title}</h3>
+          </a>
+
           <div class="flex justify-between items-center">
             <p class="text-sm text-gray-600">Location: <span class="font-medium">${event.location}</span></p>
             <span class="text-xs font-bold text-red-600 px-2 py-1 bg-red-100 rounded-full">${event.blood}</span>
@@ -73,14 +77,16 @@ const showAllEvent = (data,filter={}) => {
             <span class="text-sm text-gray-500">Created by: <b>${created_by}</b></span>
             </a>
             ${ self ? `
-               <button onclick=" event.stopPropagation()" class="px-4 py-2 bg-gray-200 text-gray-800 text-md font-semibold rounded-lg shadow-md  transition">
+               <button onclick=" event.stopPropagation()" class="px-4 py-1 bg-gray-100 text-gray-800 text-sm font-semibold rounded-lg shadow-md  transition">
                       Self
                 </button>
               `: `
                 
-                 <button onclick="acceptEvent('${event.id}','${user_id}','${event.blood}'); event.stopPropagation()" class="px-4 py-2 bg-green-500 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-green-600 transition">
-                      Accept
-                </button>
+                 <button onclick="acceptEvent('${event.id}','${user_id}','${event.blood}'); event.stopPropagation()" class="px-4 relative py-2 bg-green-500 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-green-600 transition group">
+                  <span class="absolute  inset-0 w-full h-full transition-all duration-300 overflow-hidden  ease-out transform translate-x-full bg-white opacity-20 group-hover:translate-x-0"></span>
+                        <span class="relative">Accept   </span>
+                      
+                </button> 
               `}
            
           </div>

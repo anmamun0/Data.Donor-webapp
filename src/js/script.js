@@ -1,4 +1,6 @@
- 
+
+
+
 function toggleDropdown(menuId) {
     const menu = document.getElementById(menuId);
     menu.classList.toggle('hidden');
@@ -41,28 +43,28 @@ window.addEventListener("click", (e) => {
 
 
 
-//  Notificaion box 
-const hamburgerMenu = document.getElementById('hamburger-menu');
-const mobileNav = document.getElementById('mobile-nav');
-const closeMenu = document.getElementById('close-menu');
+// //  Notificaion box 
+// const hamburgerMenu = document.getElementById('hamburger-menu');
+// const mobileNav = document.getElementById('mobile-nav');
+// const closeMenu = document.getElementById('close-menu');
 
-// Toggle mobile menu on hamburger click
-hamburgerMenu.addEventListener('click', () => {
-    mobileNav.classList.toggle('hidden');
-});
+// // Toggle mobile menu on hamburger click
+// hamburgerMenu.addEventListener('click', () => {
+//     mobileNav.classList.toggle('hidden');
+// });
 
-// Close the mobile menu when close button is clicked
-closeMenu.addEventListener('click', () => {
-    mobileNav.classList.add('hidden');
-});
+// // Close the mobile menu when close button is clicked
+// closeMenu.addEventListener('click', () => {
+//     mobileNav.classList.add('hidden');
+// });
 
-// Close the menu when any item is clicked (optional)
-const menuItems = mobileNav.querySelectorAll('a');
-menuItems.forEach(item => {
-    item.addEventListener('click', () => {
-        mobileNav.classList.add('hidden');
-    });
-});
+// // Close the menu when any item is clicked (optional)
+// const menuItems = mobileNav.querySelectorAll('a');
+// menuItems.forEach(item => {
+//     item.addEventListener('click', () => {
+//         mobileNav.classList.add('hidden');
+//     });
+// });
 
 
 

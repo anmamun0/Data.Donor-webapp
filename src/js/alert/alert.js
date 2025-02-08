@@ -1,11 +1,12 @@
 const pushAlert = (title, description) => {
     // Create the alert box container
     const alertBox = document.createElement('div');
+    alertBox.className = 'z-30';
 
     // Define the inner HTML of the alert box based on the title
     alertBox.innerHTML = `
         <!-- Custom Alert Modal -->
-        <div id="customAlert" class="fixed z-40 top-0 right-0 transform -translate-x-1/2 w-96 bg-white p-6 rounded-lg shadow-lg">
+        <div id="customAlert" class="fixed   top-0 right-0 transform -translate-x-1/2 w-96 bg-white p-6 rounded-lg shadow-lg">
             <div class="flex items-center space-x-2">
                 ${
                     title === "success" ? `

@@ -143,7 +143,7 @@ const searchResult = (data, search) => {
                 <div>
                   <span class="relative inline-block">
                     <span class="text-lg font-semibold text-gray-800">${profile.first_name} ${profile.last_name}</span>
-                    <span class="tracking-[1px] font-medium absolute -top-2 -right-12 bg-gradient-to-r from-blue-500 to-teal-500 text-white text-sm px-3 py-1 rounded-full shadow-lg border border-white">
+                    <span class="tracking-[1px] font-medium absolute -top-1 -left-12 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs px-2 py-1 rounded-full shadow-lg border border-white">
                       ${profile.blood}
                     </span>
                   </span>
@@ -157,9 +157,16 @@ const searchResult = (data, search) => {
                 </a> 
 
               <div class="ml-auto">
-                <button class="px-5 py-2 bg-gray-300 text-gray-800 hover:text-teal-700 rounded-lg shadow focus:outline-none focus:ring focus:ring-blue-300">
-                  <a href="/guest_profile.html" target="_blank"  onclick="guestProfile('${profile.user_id}')">Contact</a>
-                </button>
+
+              <a  href="/guest_profile.html"   onclick="guestProfile('${profile.user_id}')">
+                <button class="px-5 py-2 bg-gray-300 text-gray-800  rounded-lg shadow focus:outline-none focus:ring focus:ring-blue-300 group">
+                  <span class="inline-block transition-transform duration-200 group-hover:scale-105" >
+                    Contact </span> 
+                  </button>
+              </a>
+
+
+
               </div>
             </li>
         `;

@@ -392,9 +392,9 @@ const loadEventHistory = (fieldSelector, userId, status) => {
 
       data.forEach(event => {
         const li = document.createElement("li");
-        li.className = "items-center gap-4   md:w-[200px] lg:w-[250px] " 
+        li.className = "items-center gap-4   " 
         li.innerHTML = `
-                    <div class="bg-white w-full h-full rounded-lg border-[1px] border-gray-300 shadow-lg p-6 relative"   >
+                    <div class="bg-white  h-full rounded-lg border-[1px] border-gray-300 shadow-lg p-6 relative"   >
                       <!-- Title -->
                       <h3 class="text-lg font-semibold text-gray-800">${event.title} </h3>
                       <div class="flex justify-between items-center">

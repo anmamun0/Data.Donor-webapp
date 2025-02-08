@@ -3,27 +3,10 @@
 const footerControl = () => {
      
     const footer = document.querySelector('footer');
-
-    if ('token' in localStorage) { 
+ 
         footer.innerHTML =
             `
-             <div class=" bottom-0 left-0 right-0  justify-center items-center mt-24" id="validFooter">
-                <div class="container mx-auto px-4 py-4  text-gray-700 border-t-2">
-                    <!-- Footer Bottom -->
-                    <div class=" pt-2 ">
-                        <div class="container mx-auto text-center text-sm text-gray-500">
-                            Copyright © 2021. All rights reserved.
-                        </div>
-                    </div>
-                <div>
-            </div>
-            `;
-    }
-    else
-    { 
-        footer.innerHTML =
-            `
-              <div class=" bottom-0 left-0 right-0 text-center  justify-center items-center -mb-4 mt-36" id="invalidFooter"> 
+              <div  data-aos="fade-down" class="text-md bottom-0 left-0 right-0 text-center  justify-center items-center -mb-4 mt-36" id="invalidFooter"> 
             <div class="container mx-auto lg:px-20 py-8 text-gray-700 border-t-2 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
                 <!-- Logo and Social Media -->
                 <div class="flex flex-col  items-center lg:items-start   text-center lg:text-left space-y-4">
@@ -31,7 +14,7 @@ const footerControl = () => {
                     <div class="text-red-500  ">
                       
                     </div>
-                    <h2 class="text-xl font-bold text-teal-600">Data.Doner</h2>
+                    <h2 class="text-xl font-bold text-red-600">Data.Doner</h2>
                   </div>
                   <p class="text-sm max-w-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor
                     incidi.</p>
@@ -105,9 +88,7 @@ const footerControl = () => {
 
         </div>
             `;
-            
              
-    }
 
 }
 footerControl()

@@ -20,200 +20,319 @@ const toggleButton = () => {
         }
     });
 }; 
-// header control
-const upperHeaderControl = () =>
-{
-    const upperHeaderAuthentication = document.getElementById('upper-header-authentication');
-    if ('token' in localStorage)
-    {
 
-        upperHeaderAuthentication.innerHTML = 
-            `
+
+
+const header = document.querySelector('header');
+const upperHeader = document.getElementById('upper-header');
+header.className = "bg-red-600 text-white pb-4 shadow-lg fixed w-full top-0 z-10 transition-all duration-500 ease-in-out"
+header.innerHTML = ` 
+    <!-- Upper Header -->
+    <div  id="upper-header" class="bg-red-500 bg-opacity-50 text-white px-4 py-3 flex justify-between items-center text-sm transition-all duration-500 ease-in-out">
+        <div class="flex items-center space-x-4">
+            <a href="#" id="facebook-link" class="text-white"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" id="youtube-link" class="text-white"><i class="fab fa-youtube"></i></a>
+            <a href="#" id="twitter-link" class="text-white"><i class="fab fa-twitter"></i></a>
+        </div>
+        <span id="contact-info">SMS to 01625524255</span>
+    </div>
+
+    <!-- Lower Header -->
+    <div id="lower-header" class="container mx-auto flex justify-between items-center px-6 pt-3" >
+        <a href="/index.html" id="logo-container" class="flex items-center gap-2">
+        
+            <img id="logo" src="src/images/data.doner_icon.png" alt="Logo" class="w-10 h-10 bg-white rounded-full p-2">
+            <span id="site-title" class="text-2xl font-bold tracking-wide hidden lg:block">DD</span>
+        </a>
+
+        <nav id="main-nav" class="hidden md:flex space-x-6 text-lg">
+            <a href="/index.html" id="nav-home" class="hover:text-gray-300">Home</a>
+            <a href="/event_blood.html" id="nav-recipient" class="hover:text-gray-300">Recipient Requests</a>
+            <a href="/search_user.html" id="nav-donors" class="hover:text-gray-300">Find Donors</a>
+        </nav>
+
+        <div id="header-actions" class="flex items-center gap-6">
+            <div id="notification-section" class="relative " >
+                <button id="notification-button" onclick="toggleNotificationBox()" class="relative ">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405C18.21 15.21 18 14.703 18 14.17V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 5.936 6 7.828 6 10v4.17c0 .533-.21 1.041-.595 1.425L4 17h5m4 0a2.5 2.5 0 01-5 0h5z" />
+                    </svg>
+                    <span id="notification-badge" class="absolute -top-3 -right-3 text-xs bg-white text-gray-800 rounded-full px-2 py-1">3</span>
+                </button>
+            </div>
+
+            <div id="profile-section" class="relative">
+                <button id="profile-button" onclick="toggleDropdown('profile-menu')" class="flex items-center space-x-2 hover:text-gray-300">
+                    <span>Profile</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.23 7.21a1 1 0 011.32-.083L10 9.584l3.45-2.457a1 1 0 011.1 1.664l-4 2.857a1 1 0 01-1.1 0l-4-2.857a1 1 0 01-.22-1.38z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <ul id="profile-menu" class="absolute right-0 mt-2 hidden bg-white text-black shadow-lg rounded-lg py-2 w-48">
+                
+               
+                   
+                    <li class="relative">
+                        <button id="more-options-button" class="flex items-center w-full px-4 py-2 hover:bg-gray-100 transition duration-300" onclick="toggleDropdown('nested-menu')">
+                            More Options
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-auto" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.23 7.21a1 1 0 011.32-.083L10 9.584l3.45-2.457a1 1 0 011.1 1.664l-4 2.857a1 1 0 01-1.1 0l-4-2.857a1 1 0 01-.22-1.38z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <ul id="nested-menu" class="absolute top-0 -left-48 shadow-lg mt-0 hidden bg-gray-100 text-black shadow-lg rounded-lg py-2 w-48">
+                            <li><a href="/feedback/FAQ.html" id="faq-link" class="block px-4 py-2 hover:bg-gray-100">FAQ</a></li>
+                            <li><a href="/feedback/term_conditions.html" id="terms-link" class="block px-4 py-2 hover:bg-gray-100">Terms & Conditions</a></li>
+                            <li><a href="/feedback/about_us.html" id="about-link" class="block px-4 py-2 hover:bg-gray-100">About Us</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div> 
+`;
+document.addEventListener("scroll", () => {
+    const scrollPosition = window.scrollY;
+    const body = document.body;
+    
+    if (scrollPosition >= 10) {
+        body.classList.add("scrolled");
+    } else {
+        body.classList.remove("scrolled");
+    }
+});
+
+
+
+const isAuthenticated = () => {
+    const token_key = localStorage.getItem("token");
+    return !!token_key;  // Converts to true if token exists
+} 
+
+// Assigning the menu based on authentication status
+const menuItems = isAuthenticated() ? `
+    <li><a href="/profile.html" id="profile-link" class="block px-4 py-2 hover:bg-gray-100">Profile</a></li>
+    <li><a href="/setting.html" id="settings-link" class="block px-4 py-2 hover:bg-gray-100">Settings</a></li>
+    <li><a href="#" id="logout-link" onclick="handlelogOut()" class="block px-4 py-2 hover:bg-gray-100">Logout</a></li>
+
+` : `
+    <li><a href="/login.html" id="profile-link" class="block px-4 py-2 hover:bg-gray-100">Login</a></li>
+    <li><a href="/register.html" id="settings-link" class="block px-4 py-2 hover:bg-gray-100">Register</a></li>
+`;
+ 
+if (isAuthenticated())
+{
+    document.getElementById('notification-section').classList.remove('hidden');
+}
+else {
+    document.getElementById('notification-section').classList.add('hidden');
+    
+}
+document.getElementById("profile-menu").insertAdjacentHTML('afterbegin', menuItems);
+
+
+
+
+
+
+
+
+
+
+
+// // header control
+// const upperHeaderControl = () =>
+// {
+//     const upperHeaderAuthentication = document.getElementById('upper-header-authentication');
+//     if ('token' in localStorage)
+//     {
+
+//         upperHeaderAuthentication.innerHTML = 
+//             `
 
             
-            <!-- Hamburger Menu for Mobile -->
-            <div class="lg:hidden">
-                <button id="hamburger-menu" class="text-gray-900 focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
+//             <!-- Hamburger Menu for Mobile -->
+//             <div class="lg:hidden">
+//                 <button id="hamburger-menu" class="text-gray-900 focus:outline-none">
+//                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+//                         stroke="currentColor" stroke-width="2">
+//                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+//                     </svg>
+//                 </button>
+//             </div>
 
-            <!-- Navigation Menu (Desktop) -->
-            <nav class="hidden lg:flex space-x-6 text-lg ">
-                <a href="/index.html" class="hover:text-red-600  transition duration-300 ">Home</a>
-                <a href="/event_blood.html" class="hover:text-red-600 transition duration-300">Recipient Requests</a>
-                <a href="/search_user.html" class="hover:text-red-600 transition duration-300">Find Donors</a>
-            </nav>
+//             <!-- Navigation Menu (Desktop) -->
+//             <nav class="hidden lg:flex space-x-6 text-lg ">
+//                 <a href="/index.html" class="hover:text-red-600  transition duration-300 ">Home</a>
+//                 <a href="/event_blood.html" class="hover:text-red-600 transition duration-300">Recipient Requests</a>
+//                 <a href="/search_user.html" class="hover:text-red-600 transition duration-300">Find Donors</a>
+//             </nav>
 
-            <!-- Mobile Navigation Menu -->
-            <nav id="mobile-nav"
-                class="z-20 text-lg gap-4 text-center lg:hidden absolute top-0 left-0 right-0 bg-red-500 text-white font-smallbold p-10 space-y-4 hidden">
-                <a href="/index.html" class="px-2 hover:text-gray-600 transition duration-300">Home</a>
-                <a href="/event_blood.html" class="px-2 hover:text-gray-600  transition duration-300">Donate Blood</a>
-                <a href="/search_user.html" class="px-2 hover:text-gray-600  transition duration-300">Find Donors</a>
-                 <!-- Close Button -->
-                <button id="close-menu" class="absolute top-2 right-4 font-bold text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 font-bold rounded-full bg-red-500" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </nav>
+//             <!-- Mobile Navigation Menu -->
+//             <nav id="mobile-nav"
+//                 class="z-20 text-lg gap-4 text-center lg:hidden absolute top-0 left-0 right-0 bg-red-500 text-white font-smallbold p-10 space-y-4 hidden">
+//                 <a href="/index.html" class="px-2 hover:text-gray-600 transition duration-300">Home</a>
+//                 <a href="/event_blood.html" class="px-2 hover:text-gray-600  transition duration-300">Donate Blood</a>
+//                 <a href="/search_user.html" class="px-2 hover:text-gray-600  transition duration-300">Find Donors</a>
+//                  <!-- Close Button -->
+//                 <button id="close-menu" class="absolute top-2 right-4 font-bold text-white">
+//                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 font-bold rounded-full bg-red-500" fill="none" viewBox="0 0 24 24"
+//                         stroke="currentColor" stroke-width="2">
+//                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+//                     </svg>
+//                 </button>
+//             </nav>
  
-            `;
-    }
-    else
-    {
-        upperHeaderAuthentication.innerHTML = 
-        `
+//             `;
+//     }
+//     else
+//     {
+//         upperHeaderAuthentication.innerHTML = 
+//         `
 
         
-        <!-- Hamburger Menu for Mobile -->
-        <div class="lg:hidden">
-            <button id="hamburger-menu" class="text-gray-900 focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-        </div>
+//         <!-- Hamburger Menu for Mobile -->
+//         <div class="lg:hidden">
+//             <button id="hamburger-menu" class="text-gray-900 focus:outline-none">
+//                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+//                     stroke="currentColor" stroke-width="2">
+//                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+//                 </svg>
+//             </button>
+//         </div>
 
-        <!-- Navigation Menu (Desktop) -->
-        <nav class="hidden lg:flex space-x-6  ">
-            <a href="/index.html" class="hover:text-red-600 transition duration-300 ">Home</a>
-            <a href="/event_blood.html" class="hover:text-red-600 transition duration-300">Recipient Requests</a>
-            <a href="/search_user.html" class="hover:text-red-600 transition duration-300">Find Donors</a>
-        </nav>
+//         <!-- Navigation Menu (Desktop) -->
+//         <nav class="hidden lg:flex space-x-6  ">
+//             <a href="/index.html" class="hover:text-red-600 transition duration-300 ">Home</a>
+//             <a href="/event_blood.html" class="hover:text-red-600 transition duration-300">Recipient Requests</a>
+//             <a href="/search_user.html" class="hover:text-red-600 transition duration-300">Find Donors</a>
+//         </nav>
 
-        <!-- Mobile Navigation Menu -->
-        <nav id="mobile-nav"
-            class="z-20  gap-4 text-center lg:hidden absolute top-0 left-0 right-0 bg-red-500 text-white  font-smallbold   p-10 space-y-4 hidden">
-            <a href="/index.html" class="px-2 hover:text-gray-600 transition duration-300">Home</a>
-            <a href="/event_blood.html" class="px-2 hover:text-gray-600  transition duration-300">Donate Blood</a>
-            <a href="/search_user.html" class="px-2 hover:text-gray-600  transition duration-300">Find Donors</a>
-             <!-- Close Button -->
-            <button id="close-menu" class="absolute top-2 right-4 hover:scale-105 font-bold text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 font-bold rounded-full bg-red-500 border-2 " fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </nav>
+//         <!-- Mobile Navigation Menu -->
+//         <nav id="mobile-nav"
+//             class="z-20  gap-4 text-center lg:hidden absolute top-0 left-0 right-0 bg-red-500 text-white  font-smallbold   p-10 space-y-4 hidden">
+//             <a href="/index.html" class="px-2 hover:text-gray-600 transition duration-300">Home</a>
+//             <a href="/event_blood.html" class="px-2 hover:text-gray-600  transition duration-300">Donate Blood</a>
+//             <a href="/search_user.html" class="px-2 hover:text-gray-600  transition duration-300">Find Donors</a>
+//              <!-- Close Button -->
+//             <button id="close-menu" class="absolute top-2 right-4 hover:scale-105 font-bold text-white">
+//                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 font-bold rounded-full bg-red-500 border-2 " fill="none" viewBox="0 0 24 24"
+//                     stroke="currentColor" stroke-width="2">
+//                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+//                 </svg>
+//             </button>
+//         </nav>
 
-        `;
-    }
+//         `;
+//     }
 
-}
-
-
+// }
 
 
 
 
 
 
-const downHeaderControl = () => {
+
+
+// const downHeaderControl = () => {
      
-    const headerAuthentication = document.getElementById('header-authentication');
+//     const headerAuthentication = document.getElementById('header-authentication');
  
 
-    if ('token' in localStorage) { 
+//     if ('token' in localStorage) { 
 
-        headerAuthentication.innerHTML = `
-        <div>
-            <!-- Right Section -->
-            <div class="flex items-center space-x-4 relative">
-                <!-- Notification Icon -->
-                <div class="relative">
-                    <button onclick="toggleNotificationBox()" class="relative hover:scale-105 transition duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M15 17h5l-1.405-1.405C18.21 15.21 18 14.703 18 14.17V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 5.936 6 7.828 6 10v4.17c0 .533-.21 1.041-.595 1.425L4 17h5m4 0a2.5 2.5 0 01-5 0h5z" />
-                        </svg>
-                        <span class="absolute -top-3 -right-3 text-xs bg-red-600 text-white rounded-full px-2 py-1">0</span>
-                    </button>
+//         headerAuthentication.innerHTML = `
+//         <div>
+//             <!-- Right Section -->
+//             <div class="flex items-center space-x-4 relative">
+//                 <!-- Notification Icon -->
+//                 <div class="relative">
+//                     <button onclick="toggleNotificationBox()" class="relative hover:scale-105 transition duration-300">
+//                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+//                             stroke="currentColor" stroke-width="2">
+//                             <path stroke-linecap="round" stroke-linejoin="round"
+//                                 d="M15 17h5l-1.405-1.405C18.21 15.21 18 14.703 18 14.17V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 5.936 6 7.828 6 10v4.17c0 .533-.21 1.041-.595 1.425L4 17h5m4 0a2.5 2.5 0 01-5 0h5z" />
+//                         </svg>
+//                         <span class="absolute -top-3 -right-3 text-xs bg-red-600 text-white rounded-full px-2 py-1">0</span>
+//                     </button>
 
-                    <!-- Notification Box -->
-                    <div id="notification-box"
-                        class="absolute z-10 right-0 mt-2 hidden bg-white text-black shadow-lg rounded-lg py-4 px-6 w-72 max-h-96 overflow-y-auto transition-all duration-300 transform scale-95 opacity-0 hover:scale-100 hover:opacity-100">
-                        <p class="font-semibold text-xl mb-4">Notifications</p>
-                        <ul class="space-y-4">
+//                     <!-- Notification Box -->
+//                     <div id="notification-box"
+//                         class="absolute z-10 right-0 mt-2 hidden bg-white  shadow-lg rounded-lg py-4 px-6 w-72 max-h-96 overflow-y-auto transition-all duration-300 transform scale-95 opacity-0 hover:scale-100 hover:opacity-100">
+//                         <p class="font-semibold text-xl mb-4">Notifications</p>
+//                         <ul class="space-y-4">
                          
-                            <li class="border-b pb-2">
-                                <a href="#" class="block hover:bg-gray-100 px-2 py-1 rounded-lg transition-colors duration-200">
+//                             <li class="border-b pb-2">
+//                                 <a href="#" class="block hover:bg-gray-100 px-2 py-1 rounded-lg transition-colors duration-200">
                                      
-                                    <small class="text-gray-500 text-xs block mt-1"> </small>
-                                </a>
-                            </li> 
-                            <!-- More notifications here -->
-                        </ul>
-                    </div>
-                </div>
+//                                     <small class="text-gray-500 text-xs block mt-1"> </small>
+//                                 </a>
+//                             </li> 
+//                             <!-- More notifications here -->
+//                         </ul>
+//                     </div>
+//                 </div>
 
-                <!-- Profile Dropdown -->
-                <div class="relative z-10" id="profile-dropdown">
-                    <button class="flex items-center space-x-2 hover:text-teal-800 transition duration-300"
-                        onclick="toggleDropdown('profile-menu')">
-                        <span>Profile</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M5.23 7.21a1 1 0 011.32-.083L10 9.584l3.45-2.457a1 1 0 011.1 1.664l-4 2.857a1 1 0 01-1.1 0l-4-2.857a1 1 0 01-.22-1.38z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                    <!-- Main Dropdown -->
-                    <ul id="profile-menu"
-                        class="absolute right-0 mt-2 hidden bg-white text-black shadow-lg rounded-lg py-2 w-48">
-                        <li><a href="/profile.html" class="block px-4 py-2 hover:bg-gray-100">Profile</a></li>
-                        <li><a href="/setting.html" class="block px-4 py-2 hover:bg-gray-100">Settings</a></li>
-                        <li class="relative">
-                            <button class="flex items-center w-full px-4 py-2 hover:bg-gray-100 transition duration-300"
-                                onclick="toggleDropdown('nested-menu')">
-                                More Options
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-auto" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M5.23 7.21a1 1 0 011.32-.083L10 9.584l3.45-2.457a1 1 0 011.1 1.664l-4 2.857a1 1 0 01-1.1 0l-4-2.857a1 1 0 01-.22-1.38z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                            <!-- Nested Dropdown -->
-                            <ul id="nested-menu"
-                                class="absolute right-full top-0 mt-0 hidden bg-white text-black shadow-lg rounded-lg py-2 w-48">
-                                <li><a href="/feedback/about_us.html" class="block px-4 py-2 hover:bg-gray-100">FQA</a></li>
-                                <li><a href="/feedback/FAQ.html" class="block px-4 py-2 hover:bg-gray-100">Terms &
-                                        Conditions</a></li>
-                                <li><a href="/feedback/term_conditions.html" class="block px-4 py-2 hover:bg-gray-100">About
-                                        Us</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#" onclick="handlelogOut()" class="block px-4 py-2 hover:bg-gray-100">Logout</a></li>
-                    </ul>
-                </div>
+//                 <!-- Profile Dropdown -->
+//                 <div class="relative z-10" id="profile-dropdown">
+//                     <button class="flex items-center space-x-2 hover:text-teal-800 transition duration-300"
+//                         onclick="toggleDropdown('profile-menu')">
+//                         <span>Profile</span>
+//                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+//                             <path fill-rule="evenodd"
+//                                 d="M5.23 7.21a1 1 0 011.32-.083L10 9.584l3.45-2.457a1 1 0 011.1 1.664l-4 2.857a1 1 0 01-1.1 0l-4-2.857a1 1 0 01-.22-1.38z"
+//                                 clip-rule="evenodd" />
+//                         </svg>
+//                     </button>
+//                     <!-- Main Dropdown -->
+//                     <ul id="profile-menu"
+//                         class="absolute right-0 mt-2 hidden bg-white text-black shadow-lg rounded-lg py-2 w-48">
+//                         <li><a href="/profile.html" class="block px-4 py-2 hover:bg-gray-100">Profile</a></li>
+//                         <li><a href="/setting.html" class="block px-4 py-2 hover:bg-gray-100">Settings</a></li>
+//                         <li class="relative">
+//                             <button class="flex items-center w-full px-4 py-2 hover:bg-gray-100 transition duration-300"
+//                                 onclick="toggleDropdown('nested-menu')">
+//                                 More Options
+//                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-auto" viewBox="0 0 20 20"
+//                                     fill="currentColor">
+//                                     <path fill-rule="evenodd"
+//                                         d="M5.23 7.21a1 1 0 011.32-.083L10 9.584l3.45-2.457a1 1 0 011.1 1.664l-4 2.857a1 1 0 01-1.1 0l-4-2.857a1 1 0 01-.22-1.38z"
+//                                         clip-rule="evenodd" />
+//                                 </svg>
+//                             </button>
+//                             <!-- Nested Dropdown -->
+//                             <ul id="nested-menu"
+//                                 class="absolute right-full top-0 mt-0 hidden bg-white text-black shadow-lg rounded-lg py-2 w-48">
+//                                 <li><a href="/feedback/about_us.html" class="block px-4 py-2 hover:bg-gray-100">FQA</a></li>
+//                                 <li><a href="/feedback/FAQ.html" class="block px-4 py-2 hover:bg-gray-100">Terms &
+//                                         Conditions</a></li>
+//                                 <li><a href="/feedback/term_conditions.html" class="block px-4 py-2 hover:bg-gray-100">About
+//                                         Us</a></li>
+//                             </ul>
+//                         </li>
+//                         <li><a href="#" onclick="handlelogOut()" class="block px-4 py-2 hover:bg-gray-100">Logout</a></li>
+//                     </ul>
+//                 </div>
 
-            </div>
-        </div>
-        `;
+//             </div>
+//         </div>
+//         `;
  
-    }
-    else
-    {  
-        headerAuthentication.innerHTML =
-        `
-            <nav class=" lg:flex space-x-4" id=""> 
-                <a href="/login.html" class="text-lg font-semibold  border-[1px] border-transparent hover:border-gray-500 hover:text-red-500 hover:bg-gray-200 px-4 py-3 rounded-lg transition duration-300">Login</a>
-                <a href="/register.html" class="text-lg font-semibold  border-[1px] border-transparent hover:border-gray-500  hover:text-red-500 hover:bg-gray-200 px-4 py-3 rounded-lg transition duration-300">Register</a> 
-            </nav> 
-        `;    
-    }
+//     }
+//     else
+//     {  
+//         headerAuthentication.innerHTML =
+//         `
+//             <nav class=" lg:flex space-x-4" id=""> 
+//                 <a href="/login.html" class="text-lg font-semibold  border-[1px] border-transparent hover:border-gray-500 hover:text-red-500 hover:bg-gray-200 px-4 py-3 rounded-lg transition duration-300">Login</a>
+//                 <a href="/register.html" class="text-lg font-semibold  border-[1px] border-transparent hover:border-gray-500  hover:text-red-500 hover:bg-gray-200 px-4 py-3 rounded-lg transition duration-300">Register</a> 
+//             </nav> 
+//         `;    
+//     }
 
-}
-downHeaderControl();
-upperHeaderControl();
+// }
+// downHeaderControl();
+// upperHeaderControl();
 
 
 
@@ -265,28 +384,28 @@ window.addEventListener("click", (e) => {
 
 
 
-//  Notificaion box 
-const hamburgerMenu = document.getElementById('hamburger-menu');
-const mobileNav = document.getElementById('mobile-nav');
-const closeMenu = document.getElementById('close-menu');
+// //  Notificaion box 
+// const hamburgerMenu = document.getElementById('hamburger-menu');
+// const mobileNav = document.getElementById('mobile-nav');
+// const closeMenu = document.getElementById('close-menu');
 
-// Toggle mobile menu on hamburger click
-hamburgerMenu.addEventListener('click', () => {
-    mobileNav.classList.toggle('hidden');
-});
+// // Toggle mobile menu on hamburger click
+// hamburgerMenu.addEventListener('click', () => {
+//     mobileNav.classList.toggle('hidden');
+// });
 
-// Close the mobile menu when close button is clicked
-closeMenu.addEventListener('click', () => {
-    mobileNav.classList.add('hidden');
-});
+// // Close the mobile menu when close button is clicked
+// closeMenu.addEventListener('click', () => {
+//     mobileNav.classList.add('hidden');
+// });
 
-// Close the menu when any item is clicked (optional)
-const menuItems = mobileNav.querySelectorAll('a');
-menuItems.forEach(item => {
-    item.addEventListener('click', () => {
-        mobileNav.classList.add('hidden');
-    });
-});
+// // Close the menu when any item is clicked (optional)
+// const menuItems = mobileNav.querySelectorAll('a');
+// menuItems.forEach(item => {
+//     item.addEventListener('click', () => {
+//         mobileNav.classList.add('hidden');
+//     });
+// });
  
 
 

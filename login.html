@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Login </title>
+    <link rel="stylesheet" href="src/css/style.css"> 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="/src/images/data.doner.webp" type="image/x-icon"> 
+    <link rel="icon" href="/src/images/data.doner_icon.png" type="image/x-icon">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
@@ -19,72 +20,74 @@
 </head>
 
 <body class="bg-teal-50" style=" font-family: 'Jost', serif;">
-    <header class=" bg-gradient-to-r from-teal-200 to-white  shadow-md text-black text-md">
+    <header class="z-10"> </header>
 
-        <div class="container  mx-auto flex justify-between items-center py-4 px-6 text-gray-800">
-        <!-- Logo -->
-        <a href="/index.html" class="flex items-center space-x-2 gap-4">
-            <img src="src/images/data.doner.webp" alt="" class="w-16 h-16 ">
-            <span class="text-2xl font-bold tracking-wide" style="font-family: 'Roboto Condensed', serif;">Data.Donor</span>
-        </a>
 
-        <div id="upper-header-authentication"> </div>
-        <div id="header-authentication"> </div>
- 
-        </div> 
-    </header>
 
- 
-    <div class="w-full max-w-md bg-white shadow-lg rounded-lg p-8 m-auto my-8 px-12 mb-20">
+    <div class="w-full max-w-md bg-white shadow-lg rounded-lg p-8 m-auto my-8 px-12 mt-20">
         <!-- Logo -->
         <div class="text-center mb-6">
-          <img src="src/images/data.doner.webp" alt="Blood Bank Logo" class="mx-auto w-20 h-20 rounded-full shadow">
-          <h1 class="text-2xl font-bold mb-4 text-center">Data.Doner Login</h1>
+            <img src="src/images/data.doner_icon.png" alt="Blood Bank Logo" class="mx-auto w-20 h-20 rounded-full shadow">
+            <h1 class="text-2xl font-bold mb-4 text-center">Login to Your Account</h1>
         </div>
-
-
+    
         <form id="loginForm" class="space-y-4">
             <div>
                 <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-                <input type="text" id="username" name="username" 
-                       class="w-full mt-2 p-2 border border-gray-300 rounded-md text-gray-900 placeholder-gray-500 focus:border-teal-600 focus:outline-none hover:border-gray-400 transition-all duration-200 ease-in-out" 
-                       required>
+                <input type="text" id="username" name="username"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md text-gray-900 placeholder-gray-500 focus:border-teal-600 focus:outline-none hover:border-gray-400 transition-all duration-200 ease-in-out"
+                    required>
             </div>
-            <div>
+            <div class="relative">
                 <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                <input type="password" id="password" name="password" 
-                       class="w-full mt-2 p-2 border border-gray-300 rounded-md text-gray-900 placeholder-gray-500 focus:border-teal-600 focus:outline-none hover:border-gray-400 transition-all duration-200 ease-in-out" 
-                       required>
+                <input type="password" id="password" name="password"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md text-gray-900 placeholder-gray-500 focus:border-teal-600 focus:outline-none hover:border-gray-400 transition-all duration-200 ease-in-out pr-10"
+                    required>
+                <span id="togglePassword" class="absolute right-3 top-10 cursor-pointer text-gray-500 hover:text-gray-700">
+                    &#128065;
+                </span>
             </div>
-            <button type="submit" 
-                    class="w-full bg-teal-600 text-white py-2 px-4 rounded-md shadow-md hover:bg-red-700 transition duration-300">
+            <button type="submit"
+                class="w-full bg-teal-600 text-white py-2 px-4 rounded-md shadow-md hover:bg-red-700 transition duration-300">
                 Login
             </button>
         </form>
         <p id="errorMsg" class="text-red-500 text-sm mt-4 hidden"></p>
-
+    
         <!-- Footer -->
         <div class="text-center mt-6">
             <p class="text-sm text-gray-600">
-              Don't have an account? 
-              <a href="/register.html" class="text-red-500 font-medium hover:underline">Register Now</a>
+                Don't have an account?
+                <a href="/register.html" class="text-red-500 font-medium hover:underline">Register Now</a>
             </p>
-          </div>
+        </div>
     </div>
-
-
-
- 
-
-
-
-    <footer></footer> 
     
+    <script>
+        document.getElementById("togglePassword").addEventListener("click", function () {
+            const passwordField = document.getElementById("password");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        });
+    </script>
+    
+
+
+
+
+
+
+    <footer></footer>
+
 
     <script src="src/js/header.js"></script>
     <script src="src/js/footer.js"></script>
     <script src="src/js/login.js"> </script>
 
-    
+
 </body>
+
 </html>
