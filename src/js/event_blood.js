@@ -58,7 +58,7 @@ const showAllEvent = (data,filter={}) => {
               
                
 
-          <div class="bg-white rounded-lg shadow-lg p-6">
+          <div class="bg-white rounded-lg shadow-lg p-6"  data-aos="fade-up">
           <!-- Title -->
 
          <a href="./view_event.html"  onclick="localStorage.setItem('view_event',${event.id})"> 

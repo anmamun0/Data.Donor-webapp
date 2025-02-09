@@ -131,7 +131,7 @@ const searchResult = (data, search) => {
         
         
         ul.innerHTML += `
-            <li class="flex items-center p-4 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
+            <li class="flex items-center p-4 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow"  data-aos="fade-up">
               <div class="flex items-center space-x-4">
               <a href="/guest_profile.html" target="_blank" >
                 <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden">

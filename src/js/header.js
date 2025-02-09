@@ -69,9 +69,13 @@ header.innerHTML = `
                     </svg>
                 </button>
                 <ul id="profile-menu" class="absolute right-0 mt-2 hidden bg-white text-black shadow-lg rounded-lg py-2 w-48">
-                
-               
-                   
+                    <ul  class="flex-col md:hidden "> 
+                        <li> <a href="/index.html"  class="block px-4 py-2 hover:bg-gray-100">Home</a></li> 
+                        <li><a href="/event_blood.html" id="nav-recipient" class="block px-4 py-2 hover:bg-gray-100">Recipient Requests</a></li> 
+                       <li> <a href="/search_user.html" id="nav-donors" class="block px-4 py-2 hover:bg-gray-100">Find Donors</a></li> 
+                    </ul>
+                    <ul id="profile-deep-menu">
+                    <ul>
                     <li class="relative">
                         <button id="more-options-button" class="flex items-center w-full px-4 py-2 hover:bg-gray-100 transition duration-300" onclick="toggleDropdown('nested-menu')">
                             More Options
@@ -79,7 +83,9 @@ header.innerHTML = `
                                 <path fill-rule="evenodd" d="M5.23 7.21a1 1 0 011.32-.083L10 9.584l3.45-2.457a1 1 0 011.1 1.664l-4 2.857a1 1 0 01-1.1 0l-4-2.857a1 1 0 01-.22-1.38z" clip-rule="evenodd" />
                             </svg>
                         </button>
+                        
                         <ul id="nested-menu" class="absolute top-0 -left-48 shadow-lg mt-0 hidden bg-gray-100 text-black shadow-lg rounded-lg py-2 w-48">
+
                             <li><a href="/feedback/FAQ.html" id="faq-link" class="block px-4 py-2 hover:bg-gray-100">FAQ</a></li>
                             <li><a href="/feedback/term_conditions.html" id="terms-link" class="block px-4 py-2 hover:bg-gray-100">Terms & Conditions</a></li>
                             <li><a href="/feedback/about_us.html" id="about-link" class="block px-4 py-2 hover:bg-gray-100">About Us</a></li>
@@ -127,7 +133,7 @@ else {
     document.getElementById('notification-section').classList.add('hidden');
     
 }
-document.getElementById("profile-menu").insertAdjacentHTML('afterbegin', menuItems);
+document.getElementById("profile-deep-menu").insertAdjacentHTML('afterbegin', menuItems);
 
 
 
