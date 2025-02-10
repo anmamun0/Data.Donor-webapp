@@ -46,22 +46,22 @@
                     </button>
                     <!-- Button for Vision -->
                     <button onclick="showContent(1)"
-                        class="button w-full text-left py-4 px-6 bg-gray-200 hover:bg-gray-300 rounded-lg text-gray-800 font-semibold">
+                        class="button w-full text-left py-4 px-6 bg-gray-200 hover:bg-gray-300  hover:text-gray-800 rounded-lg text-gray-800 font-semibold">
                         Our Vision
                     </button>
                     <!-- Button for Values -->
                     <button onclick="showContent(2)"
-                        class="button w-full text-left py-4 px-6 bg-gray-200 hover:bg-gray-300 rounded-lg text-gray-800 font-semibold">
+                        class="button w-full text-left py-4 px-6 bg-gray-200  hover:bg-gray-300  hover:text-gray-800 rounded-lg text-gray-800 font-semibold">
                         Our Values
                     </button>
                     <!-- Button for Team -->
                     <button onclick="showContent(3)"
-                        class="button w-full text-left py-4 px-6 bg-gray-200 hover:bg-gray-300 rounded-lg text-gray-800 font-semibold">
+                        class="button w-full text-left py-4 px-6 bg-gray-200 hover:bg-gray-300  hover:text-gray-800 rounded-lg text-gray-800 font-semibold">
                         Meet Our Team
                     </button>
                     <!-- Button for Contact -->
                     <button onclick="showContent(4)"
-                        class="button w-full text-left py-4 px-6 bg-gray-200 hover:bg-gray-300 rounded-lg text-gray-800 font-semibold">
+                        class="button w-full text-left py-4 px-6 bg-gray-200 hover:bg-gray-300  hover:text-gray-800 rounded-lg text-gray-800 font-semibold">
                         Contact Us
                     </button>
                 </div>
@@ -178,7 +178,7 @@
                         <p class="text-gray-600"><strong>Email:</strong> anmamun0@gmail.com</p>
                         <p class="text-gray-600"><strong>Phone:</strong> +880 1782 059949</p>
                         <p class="text-gray-600"><strong>Portfolio:</strong> <a href="https://anmamun0.vercel.app"
-                                class="text-blue-600">anmamun0.vercel.app</a></p>
+                                class="text-red-600">anmamun0.vercel.app</a></p>
                     </div>
                 </div>
             </section>
@@ -220,12 +220,12 @@
             allContents.forEach((content, i) => {
                 if (i === index) {
                     content.classList.remove("hidden");
-                    allButtons[i].classList.add("bg-blue-500", "text-white");
+                    allButtons[i].classList.add("bg-red-500", "text-white");
                     allButtons[i].classList.remove("bg-gray-200", "text-gray-800");
                 } else {
                     content.classList.add("hidden");
                     allButtons[i].classList.add("bg-gray-200", "text-gray-800");
-                    allButtons[i].classList.remove("bg-blue-500", "text-white");
+                    allButtons[i].classList.remove("bg-red-500", "text-white");
                 }
             });
         }

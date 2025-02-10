@@ -38,22 +38,22 @@
                 <div class="md:w-1/4 space-y-4 my-2">
                     <!-- Button for Access Restrictions -->
                     <button onclick="showContent(0)"
-                        class="button w-full text-left py-4 px-6 bg-gray-200 hover:bg-gray-300 rounded-lg text-gray-800 font-semibold">
+                        class="button w-full text-left py-4 px-6 bg-gray-200 hover:bg-gray-300  hover:text-gray-800 rounded-lg text-gray-800 font-semibold">
                         Access Restrictions
                     </button>
                     <!-- Button for Blood Request Notifications -->
                     <button onclick="showContent(1)"
-                        class="button w-full text-left py-4 px-6 bg-gray-200 hover:bg-gray-300 rounded-lg text-gray-800 font-semibold">
+                        class="button w-full text-left py-4 px-6 bg-gray-200 hover:bg-gray-300  hover:text-gray-800 rounded-lg text-gray-800 font-semibold">
                         Blood Request Notifications
                     </button>
                     <!-- Button for Features -->
                     <button onclick="showContent(2)"
-                        class="button w-full text-left py-4 px-6 bg-gray-200 hover:bg-gray-300 rounded-lg text-gray-800 font-semibold">
+                        class="button w-full text-left py-4 px-6 bg-gray-200 hover:bg-gray-300  hover:text-gray-800 rounded-lg text-gray-800 font-semibold">
                         Features
                     </button>
                     <!-- Button for General Terms -->
                     <button onclick="showContent(3)"
-                        class="button w-full text-left py-4 px-6 bg-gray-200 hover:bg-gray-300 rounded-lg text-gray-800 font-semibold">
+                        class="button w-full text-left py-4 px-6 bg-gray-200 hover:bg-gray-300  hover:text-gray-800 rounded-lg text-gray-800 font-semibold">
                         General Terms
                     </button>
                 </div>
@@ -111,7 +111,7 @@
             <!-- Action Buttons -->
             <div class="flex justify-center space-x-4">
                 <a href="#"
-                    class="bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition ease-in-out duration-300">Accept</a>
+                    class="bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600 transition ease-in-out duration-300">Accept</a>
                 <a href="#"
                     class="bg-gray-300 text-gray-800 py-2 px-6 rounded-lg hover:bg-gray-400 transition ease-in-out duration-300">Decline</a>
             </div>
@@ -157,12 +157,12 @@
             allContents.forEach((content, i) => {
                 if (i === index) {
                     content.classList.remove("hidden");
-                    allButtons[i].classList.add("bg-blue-500", "text-white");
+                    allButtons[i].classList.add("bg-red-500", "text-white");
                     allButtons[i].classList.remove("bg-gray-200", "text-gray-800");
                 } else {
                     content.classList.add("hidden");
                     allButtons[i].classList.add("bg-gray-200", "text-gray-800");
-                    allButtons[i].classList.remove("bg-blue-500", "text-white");
+                    allButtons[i].classList.remove("bg-red-500", "text-white");
                 }
             });
         }
