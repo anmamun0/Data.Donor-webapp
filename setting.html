@@ -25,11 +25,11 @@
 
     <main class="mt-16 p-4"> 
         <!-- Edit Profile Page -->
-        <div class="max-w-6xl mx-auto mt-10 p-6 px-20 bg-white rounded-lg shadow-lg text-md ">
-            <div class="py-6">
+        <div class="max-w-6xl mx-auto  text-md ">
+            <div class="py-6 mt-10  px-10  m-2 sm:m-10 bg-white shadow-lg rounded-lg ">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-6 ">Edit Profile</h2>
                 <form method="GET" enctype="multipart/form-data" id="profile-update-form">
-                    <div class="flex items-center space-x-4 mb-6">
+                    <div class="flex items-center  mb-6">
                         <div class="sm:grid items-center  grid-cols-12  gap-10 justify-between">
                             <div class="lg:flex justify-between gap-8 my-4  col-span-8">
                                 <div class="w-20 h-20   md:w-32 md:h-32 overflow-hidden rounded-full md:border-4 border-gray-300">
@@ -59,13 +59,13 @@
                                     <label for="id_username" class="block font-medium text-gray-700">Username</label>
                                     <input type="text" id="id_username" name="username" value=""
                                         placeholder="Enter you name"
-                                        class="block w-full mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                        class="block   mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                                         required />
                                 </div>
                                 <div class="w-full">
                                     <label for="id_blood" class="block font-medium text-gray-700">Blood Group</label>
                                     <select id="id_blood" name="blood"
-                                        class="block w-full mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                        class="block   mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                                         required>
                                         <option value=""></option>
                                         <option value="A+">A+</option>
@@ -82,7 +82,7 @@
                         </div>
                     </div>
 
-                    <div class="flex gap-6 mb-6">
+                    <div class="flex flex-col sm:flex-row gap-6 mb-6">
                         <div class="w-full">
                             <label for="id_first_name" class="block font-medium text-gray-700">First Name</label>
                             <input type="text" id="id_first_name" name="first_name" value=""
@@ -97,7 +97,7 @@
                         </div>
                     </div>
 
-                    <div class="flex justify-between gap-8">
+                    <div class="flex flex-col sm:flex-row justify-between gap-8">
                         <div class="mb-6 w-full">
                             <label for="id_email" class="block font-medium text-gray-700">Email Address</label>
                             <input type="email" id="id_email" name="email" value=""
@@ -112,7 +112,7 @@
                         </div>
                     </div>
 
-                    <div class="flex justify-between gap-8">
+                    <div class="flex flex-col sm:flex-row justify-between gap-8">
                         <div class="mb-6 w-full">
                             <label for="id_age" class="block font-medium text-gray-700">Age</label>
                             <input type="number" id="id_age" name="age" value=""
@@ -130,7 +130,7 @@
                         </div>
                     </div>
 
-                    <div class="flex justify-between gap-8">
+                    <div class="flex flex-col sm:flex-row justify-between gap-8">
                         <div class="mb-6 w-full">
                             <label for="id_district" class="block font-medium text-gray-700">District</label>
                             <select id="id_district" name="district"

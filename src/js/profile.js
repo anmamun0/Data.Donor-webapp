@@ -392,7 +392,7 @@ const loadEventHistory = (fieldSelector, userId, status) => {
 
       data.forEach(event => {
         const li = document.createElement("li");
-        li.className = "items-center gap-4   " 
+        li.className = "items-center gap-4  z-0 " 
         li.innerHTML = `
                     <div class="bg-white  h-full rounded-lg border-[1px] border-gray-300 shadow-lg p-6 relative"   >
                       <!-- Title -->
@@ -402,9 +402,9 @@ const loadEventHistory = (fieldSelector, userId, status) => {
                         <span class="text-xs font-bold text-red-600 px-2 py-1 bg-red-100 rounded-full  absolute top-2 right-2 ">${event.blood}</span>
                       </div>
                       <p class="text-xs text-gray-600">Date: <span class="font-medium">${event.event_date}</span></p>
-                      <div class="flex justify-between items-center gap-4 pt-2 mt-2 border-t border-gray-200">
+                      <div class="flex  justify-between items-center gap-4 pt-6 sm:pt-4 mt-6 sm:mt-4 border-t border-gray-200">
                         ${status == 'Pending' ? `
-                          <button  onclick="receivedBloodSubmition('${event.id}','${event.blood}','${event.doner}')" class="px-4 py-2 bg-green-500 text-white text-sm absolute bottom-4 right-4  rounded-lg shadow-md hover:bg-green-600 transition">
+                          <button  onclick="receivedBloodSubmition('${event.id}','${event.blood}','${event.doner}')" class="px-4 py-2 bg-green-500 text-white text-xs sm:text-sm absolute bottom-2 sm:bottom-4 right-4  rounded-lg shadow-md hover:bg-green-600 transition">
                               Received?
                           </button>
                           `: `
@@ -470,12 +470,12 @@ const loadALLAcceptedEvents = (userId) => {
                             <span class="text-xs font-bold text-red-600 px-2 py-1 bg-red-100 rounded-full  absolute top-2 right-2 ">${event.blood}</span>
                           </div>
                           <p class="text-xs text-gray-600">Date: <span class="font-medium">${event.event_date}</span></p>
-                          <div class="flex justify-between items-center gap-4 pt-2 mt-2 border-t border-gray-200">
+                          <div class="flex flex-col sm:justify-between sm:items-center gap-4 pt-2 mt-2 border-t border-gray-200">
                             <a onclick="guestProfile(${data[0].id}); event.stopPropagation()" class="cursor-pointer"> 
                             <span class="text-sm text-gray-500">Created by: <b>${created_by}</b></span>
                             </a>
                             
-                            <button  class="px-4 py-2 bg-gray-200 text-gray-800 text-md font-semibold rounded-lg shadow-md  transition">
+                            <button  class="px-4 py-2  bg-gray-200 text-gray-800 text-xs sm:text-sm font-semibold rounded-lg shadow-md  transition">
                             ${event.status} </button>
                           </div>
                         </div>

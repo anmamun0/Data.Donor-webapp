@@ -25,20 +25,21 @@ const toggleButton = () => {
 
 const header = document.querySelector('header');
 const upperHeader = document.getElementById('upper-header');
-header.className = "bg-red-600 text-white pb-4 shadow-lg fixed w-full top-0 z-10 transition-all duration-500 ease-in-out"
+header.className = "bg-red-600 text-white pb-4  shadow-lg fixed w-full top-0 z-10 transition-all duration-500 ease-in-out"
 header.innerHTML = ` 
     <!-- Upper Header -->
-    <div  id="upper-header" class="bg-red-500 bg-opacity-50 text-white px-4 py-3 flex justify-between items-center text-sm transition-all duration-500 ease-in-out">
+    <div class="container mx-auto  pr-16 sm:pr-10 md:pr-6">
+    <div  id="upper-header" class="bg-opacity-50 text-white  px-8 py-3 flex justify-between items-center text-sm transition-all duration-500 ease-in-out">
         <div class="flex items-center space-x-4">
             <a href="#" id="facebook-link" class="text-white"><i class="fab fa-facebook-f"></i></a>
             <a href="#" id="youtube-link" class="text-white"><i class="fab fa-youtube"></i></a>
             <a href="#" id="twitter-link" class="text-white"><i class="fab fa-twitter"></i></a>
         </div>
-        <span id="contact-info">SMS to 01625524255</span>
+        <span id="contact-info" class="text-left">SMS to 01625524255</span>
     </div>
 
     <!-- Lower Header -->
-    <div id="lower-header" class="container mx-auto flex justify-between items-center px-6 pt-3" >
+    <div id="lower-header" class=" flex justify-between items-center px-6 pt-3 " >
         <a href="/index.html" id="logo-container" class="flex items-center gap-2">
         
             <img id="logo" src="src/images/data.doner_icon.png" alt="Logo" class="w-10 h-10 bg-white rounded-full p-2">
@@ -84,7 +85,7 @@ header.innerHTML = `
                             </svg>
                         </button>
                         
-                        <ul id="nested-menu" class="absolute top-0 -left-48 shadow-lg mt-0 hidden bg-gray-100 text-black shadow-lg rounded-lg py-2 w-48">
+                        <ul id="nested-menu" class="absolute sm:top-0 sm:-left-48 shadow-lg mt-0 hidden bg-gray-100 text-black shadow-lg rounded-lg py-2 w-48">
 
                             <li><a href="/feedback/FAQ.html" id="faq-link" class="block px-4 py-2 hover:bg-gray-100">FAQ</a></li>
                             <li><a href="/feedback/term_conditions.html" id="terms-link" class="block px-4 py-2 hover:bg-gray-100">Terms & Conditions</a></li>
@@ -94,7 +95,8 @@ header.innerHTML = `
                 </ul>
             </div>
         </div>
-    </div> 
+    </div>
+    </div>
 `;
 document.addEventListener("scroll", () => {
     const scrollPosition = window.scrollY;
