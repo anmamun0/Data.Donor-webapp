@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Blood Donation Event</title>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <link rel="stylesheet" href="src/css/style.css"> 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="/src/images/data.doner_icon.png" type="image/x-icon">
@@ -123,6 +125,7 @@
                 "blood": formData.get('blood'),
                 "location": formData.get('location'),
             };
+            pushAlert('processing',"Wait few second!")
 
             fetch('https://datadonor-webapp.vercel.app/event/events/create/', {
                 method: 'POST',
@@ -138,23 +141,23 @@
                     }
                     return res.json();
                 })
-                .then(data => {
-                    alert('asdf');
+                .then(backdata => {
+                    pushAlert('success',`${data.blood} event created successfull!. View Your profile`)
 
-                    window.location.reload();  // Reload the page after successful creation
+                    // window.location.reload();  // Reload the page after successful creation
 
                 })
                 .catch(error => {
                     console.error('Error:', error);  // Added error handling
-                    pushAlert('success',error);
-
+                    pushAlert('alert',error); 
                 }); 
         });
     </script>
  
 <script src="src/js/header.js"></script>
 <script src="src/js/footer.js"></script>
-<script src="src/js/logout.js"></script> 
+<script src="src/js/logout.js"></script>   
+
 
 
 </body>

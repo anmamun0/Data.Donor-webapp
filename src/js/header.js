@@ -54,7 +54,7 @@ header.innerHTML = `
 
         <div id="header-actions" class="flex items-center gap-6">
             <div id="notification-section" class="relative " >
-                <button id="notification-button" onclick="toggleNotificationBox()" class="relative ">
+                <button id="notification-button" onclick="toggleNotificationBox()" class="relative hidden ">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405C18.21 15.21 18 14.703 18 14.17V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 5.936 6 7.828 6 10v4.17c0 .533-.21 1.041-.595 1.425L4 17h5m4 0a2.5 2.5 0 01-5 0h5z" />
                     </svg>
@@ -421,20 +421,32 @@ window.addEventListener("click", (e) => {
 
 
 
-
-
-
-
-
+ 
 const pushAlert = (title, description) => {
+    // Check if an alert is already displayed and close it
+    const existingAlert = document.getElementById("customAlert");
+    if (existingAlert) {
+        closeAlert(existingAlert); // Close the previous alert if exists
+    }
+
     // Create the alert box container
     const alertBox = document.createElement('div');
+    alertBox.className = 'fixed bottom-5 right-5 z-50 animate-slide-in-right';
 
     // Define the inner HTML of the alert box based on the title
     alertBox.innerHTML = `
-        <!-- Custom Alert Modal -->
-        <div id="customAlert" class="fixed z-40 top-0 right-0 transform -translate-x-1/2 w-96 bg-white p-6 rounded-lg shadow-lg">
-            <div class="flex items-center space-x-2">
+        <div id="customAlert" class="relative w-80 bg-white p-6 rounded-lg shadow-lg border-l-4 ${
+            title === "success" ? "border-green-500" :
+            title === "alert" ? "border-red-500" :
+            title === "warning" ? "border-yellow-500" :
+            title === "processing" ? "border-blue-500" : "border-gray-500"
+        }">
+            <!-- Close Button -->
+            <button onclick="closeAlert(this.parentElement)" class="absolute top-2 right-2 text-gray-600 hover:text-gray-800 text-xl">
+                &times;
+            </button>
+
+            <div class="flex items-center space-x-3">
                 ${
                     title === "success" ? `
                         <i class="fas fa-check-circle text-green-500 text-2xl"></i>
@@ -442,39 +454,51 @@ const pushAlert = (title, description) => {
                     ` : title === "alert" ? `
                         <i class="fas fa-times-circle text-red-500 text-2xl"></i>
                         <h2 class="text-xl font-semibold text-gray-800">Alert</h2>
-                    ` : `
+                    ` : title === "warning" ? `
                         <i class="fas fa-exclamation-circle text-yellow-500 text-2xl"></i>
-                        <h2 class="text-xl font-semibold text-gray-800">Warning</h2>`
+                        <h2 class="text-xl font-semibold text-gray-800">Warning</h2>
+                    ` : title === "processing" ? `
+                        <i class="fas fa-cog animate-spin text-blue-500 text-2xl"></i>
+                        <h2 class="text-xl font-semibold text-gray-800">Processing...</h2>
+                    ` : `
+                        <i class="fas fa-info-circle text-gray-500 text-2xl"></i>
+                        <h2 class="text-xl font-semibold text-gray-800">Info</h2>`
                 }
             </div>
-            <p class="mt-4 text-gray-700">${description}</p>
-            <div class="mt-6 flex justify-end">
-                <button onclick="closeAlert()" class="${title === 'success' ? 'bg-green-500' : title === 'alert' ? 'bg-red-600' : 'bg-yellow-700'} text-white px-4 py-2 rounded-md hover:bg-opacity-80">Close</button>
-            </div>
+
+            <p class="mt-3 text-gray-700 text-sm">${description}</p>
         </div>
     `;
 
     // Append the alert box to the body
     document.body.appendChild(alertBox);
 
-    // Make the alert visible
-    document.getElementById("customAlert").classList.remove("hidden");
-
-    // Optionally, auto-close the alert after a certain time
-    setTimeout(() => {
-        closeAlert();
-    }, 5000); // Close after 5 seconds
-}
- 
- 
-// Function to close the alert
-const closeAlert = () => {
-    const alertBox = document.getElementById("customAlert");
-    if (alertBox) {
-        alertBox.classList.add("hidden");
-        alertBox.remove(); // Remove the alert from DOM after closing
+    // Auto-close the alert after 5 seconds, except for "processing" type
+    if (title !== "processing") {
+        setTimeout(() => {
+            closeAlert(alertBox);
+        }, 5000);
     }
-} 
+}
+
+// Function to close the alert
+const closeAlert = (alertElement) => {
+    if (alertElement) {
+        alertElement.classList.add('animate-slide-out-right'); // Slide out animation
+        setTimeout(() => {
+            alertElement.remove();
+        }, 500); // Wait for animation to complete before removal
+    }
+}; 
+// Example usage of the function
+// Or for error
+// pushAlert('alert', 'An error occurred, please try again.');
+// Or for warning
+// pushAlert('warning', 'This is a warning message.');
+// pushAlert('processing', 'This is a warning message.');
+
+// <script src="/alert/alert.js"> </script>
+// pushAlert('success', 'You have successfully completed the action.');
 
 
 const guestProfile = (guest_id) => {

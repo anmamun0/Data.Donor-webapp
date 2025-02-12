@@ -340,7 +340,7 @@ const loadBloodHistory = (fieldSelector, userId, type) => {
         const li = document.createElement("li");
         li.className = "flex items-center gap-4";
 
-        const profileKey = type === "donor" ? event.user : event.doner;
+        const profileKey = type === "donor" ? event.user.id : event.doner;
 
         fetch(`https://datadonor-webapp.vercel.app/accounts/profiles/?user_id=${profileKey}`)
           .then(res => res.json())
@@ -423,16 +423,20 @@ const loadEventHistory = (fieldSelector, userId, status) => {
 }
 
 const receivedBloodSubmition = (event_id, event_blood, doner_id) => {
+  pushAlert('processing', 'wait few second! will received blood!');
   
   fetch(`https://datadonor-webapp.vercel.app/event/events/${event_id}/received/`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json', 
     },  
-  })
+    })
     .then(res => res.json())
     .then(data => {
-    pushAlert('success',`Accepted ${event_blood} form Doner id: ${doner_id}`)
+      pushAlert('success',`Accepted Blood ${event_blood} form Doner id: ${doner_id}`)
+    })
+    .catch(error => {
+      pushAlert('alert', error);
   })
 }
 
@@ -453,7 +457,7 @@ const loadALLAcceptedEvents = (userId) => {
 
       data.forEach(event => {
  
-        fetch(`https://datadonor-webapp.vercel.app/accounts/users/?id=${event.user}`)
+        fetch(`https://datadonor-webapp.vercel.app/accounts/users/?id=${event.user.id}`)
           .then(res => res.json())
           .then(data => { 
 

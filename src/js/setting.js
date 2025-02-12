@@ -208,7 +208,7 @@ const getImage = async (form) => {
  
           
  
-
+            pushAlert('processing',"Wait few second!") 
             // Send PUT request to the API
             fetch(`https://datadonor-webapp.vercel.app/accounts/profiles/${user_id}/update-profile/`, {
                 method: 'PUT',

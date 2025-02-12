@@ -28,7 +28,7 @@ const showEventInstanceData = (event_id) => {
         .then(data => {
             const event = data[0];    
 
-            fetch(`https://datadonor-webapp.vercel.app/accounts/users/?id=${event.user}`)
+            fetch(`https://datadonor-webapp.vercel.app/accounts/users/?id=${event.user.id}`)
                 .then(res => res.json())
                 .then(userData => {
 

@@ -1,13 +1,21 @@
 const pushAlert = (title, description) => {
     // Create the alert box container
     const alertBox = document.createElement('div');
-    alertBox.className = 'z-30';
+    alertBox.className = 'fixed bottom-5 right-5 z-50 animate-slide-in-right';
 
     // Define the inner HTML of the alert box based on the title
-    alertBox.innerHTML = `
-        <!-- Custom Alert Modal -->
-        <div id="customAlert" class="fixed   top-0 right-0 transform -translate-x-1/2 w-96 bg-white p-6 rounded-lg shadow-lg">
-            <div class="flex items-center space-x-2">
+    alertBox.innerHTML += `
+        <div id="customAlert" class="relative w-80 bg-white p-6 rounded-lg shadow-lg border-l-4 ${
+            title === "success" ? "border-green-500" :
+            title === "alert" ? "border-red-500" :
+            "border-yellow-500"
+        }">
+            <!-- Close Button -->
+            <button onclick="closeAlert(this.parentElement)" class="absolute top-2 right-2 text-gray-600 hover:text-gray-800 text-xl">
+                &times;
+            </button>
+
+            <div class="flex items-center space-x-3">
                 ${
                     title === "success" ? `
                         <i class="fas fa-check-circle text-green-500 text-2xl"></i>
@@ -20,34 +28,30 @@ const pushAlert = (title, description) => {
                         <h2 class="text-xl font-semibold text-gray-800">Warning</h2>`
                 }
             </div>
-            <p class="mt-4 text-gray-700">${description}</p>
-            <div class="mt-6 flex justify-end">
-                <button onclick="closeAlert()" class="${title === 'success' ? 'bg-green-500' : title === 'alert' ? 'bg-red-600' : 'bg-yellow-700'} text-white px-4 py-2 rounded-md hover:bg-opacity-80">Close</button>
-            </div>
+
+            <p class="mt-3 text-gray-700 text-sm">${description}</p>
         </div>
     `;
 
     // Append the alert box to the body
     document.body.appendChild(alertBox);
 
-    // Make the alert visible
-    document.getElementById("customAlert").classList.remove("hidden");
-
-    // Optionally, auto-close the alert after a certain time
+    // Auto-close the alert after 5 seconds
     setTimeout(() => {
-        closeAlert();
-    }, 5000); // Close after 5 seconds
+        closeAlert(alertBox);
+    }, 5000);
 }
- 
- 
+
 // Function to close the alert
-const closeAlert = () => {
-    const alertBox = document.getElementById("customAlert");
-    if (alertBox) {
-        alertBox.classList.add("hidden");
-        alertBox.remove(); // Remove the alert from DOM after closing
+const closeAlert = (alertElement) => {
+    if (alertElement) {
+        alertElement.classList.add('animate-slide-out-right'); // Slide out animation
+        setTimeout(() => {
+            alertElement.remove();
+        }, 500); // Wait for animation to complete before removal
     }
-} 
+};
+ 
 // Example usage of the function
 // pushAlert('success', 'You have successfully completed the action.');
 // Or for error

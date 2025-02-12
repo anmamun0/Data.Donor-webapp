@@ -1,5 +1,7 @@
  
 const handlelogOut = () => {  
+  pushAlert('processing','wait few sec.')
+  
     const token = localStorage.getItem("token"); 
 
     console.log("logout working")

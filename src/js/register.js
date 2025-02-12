@@ -8,7 +8,7 @@ if ('token' in localStorage)
   // Handle form submission
   document.querySelector("form").addEventListener("submit", function (e) {
     e.preventDefault(); // Prevent the form from submitting the traditional way
-    pushAlert('warning','Please wait 10 sec, in the page!')
+    pushAlert('processing','Please wait few sec,stay in the page!')
     // Collect form data
     const username = document.getElementById("username").value;
     const firstName = document.getElementById("first_name").value;

@@ -13,7 +13,7 @@ const showEventInstanceDataa = () => {
                 console.log('new', event);
                 localStorage.setItem('view_event_blood', event.blood);
 
-                fetch(`https://datadonor-webapp.vercel.app/accounts/users/?id=${event.user}`)
+                fetch(`https://datadonor-webapp.vercel.app/accounts/users/?id=${event.user.id}`)
                     .then(res => res.json())
                     .then(userData => {
                         const created_by = userData[0].username; 
@@ -28,7 +28,7 @@ const showEventInstanceDataa = () => {
                         document.getElementById("doner_status").textContent = event.status;
                         document.getElementById("viewDescription").value = event.description;
 
-                        // fetch(`https://datadonor-webapp.vercel.app/accounts/users/?id=${event.user}`)
+                        // fetch(`https://datadonor-webapp.vercel.app/accounts/users/?id=${event.user.id}`)
                         //     .then(res => res.json())
                         //     .then(userData => {
                         //         if (userData.length === 0) return;
@@ -45,20 +45,11 @@ const showEventInstanceDataa = () => {
 showEventInstanceDataa();
 
 
-
-
-
-
-
-
-
-
-
-
+ 
 
 const acceptEventFormSubmition = (event) => {
-    document.getElementById('accept_donation_form_loading').textContent = "Submiting.."
-    let event_id = localStorage.getItem('view_event');
+    pushAlert('processing','Submitting your donation, wait please')
+     let event_id = localStorage.getItem('view_event');
     let event_blood = localStorage.getItem('view_event_blood');
     let user_id = localStorage.getItem('user_id');
 
@@ -104,13 +95,11 @@ const acceptEventFormSubmition = (event) => {
                     pushAlert('success',`Succeccfyll Accepted you the ${event_blood} event, Plase fullfil to done Blood`);
                     document.getElementById('accepted_doner').textContent = username;
                     document.getElementById('accepted_blood').textContent = user_blood;
-                    document.getElementById('accept_donation_form_loading').textContent = "Accepted";
-
+ 
                     // window.location.reload(); 
                 })
                 .catch(error => {
-                    document.getElementById('accept_donation_form_loading').textContent = "Error";
-                    pushAlert('alert',`Not submited the form, try again!`);
+                     pushAlert('alert',`Not submited the form, try again!`);
 
                 
             })

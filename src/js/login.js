@@ -9,6 +9,7 @@ const errorMsg = document.getElementById('errorMsg');
 
 loginForm.addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent the form from reloading the page
+    pushAlert('processing','wait few sec.')
 
     // Get form data
     const username = document.getElementById('username').value;
