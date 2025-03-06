@@ -4,8 +4,16 @@ if ('token' in localStorage)
   window.location.href = 'index.html'
 }
 
- const loginForm = document.getElementById('loginForm');
+const loginForm = document.getElementById('loginForm');
 const errorMsg = document.getElementById('errorMsg');
+
+const demoUser = () => {
+  
+  document.getElementById('username').value = 'anmamun0';
+  document.getElementById('password').value = '12345mamun';
+
+}
+
 
 loginForm.addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent the form from reloading the page

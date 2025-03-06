@@ -27,9 +27,13 @@
 
     <div class="w-full max-w-md bg-white shadow-lg rounded-lg p-8 m-auto my-8 px-12 mt-20">
         <!-- Logo -->
-        <div class="text-center mb-6">
+        <div class="text-center mb-6 ">
             <img src="src/images/data.doner_icon.png" alt="Blood Bank Logo" class="mx-auto w-20 h-20 rounded-full shadow">
             <h1 class="text-2xl font-bold mb-4 text-center">Login to Your Account</h1>
+            <div class="flex gap-2 text-center justify-center">
+                <p>Want a demo user?</p>
+                <a onclick="demoUser();event.preventDefault()" href="" class="px-4 bg-gray-300 hover:underline rounded">click</a>
+            </div>
         </div>
     
         <form id="loginForm" class="space-y-4">
@@ -48,6 +52,9 @@
                     &#128065;
                 </span>
             </div>
+
+           
+
             <button type="submit"
                 class="w-full bg-red-600 text-white py-2 px-4 rounded-md shadow-md hover:bg-red-700 transition duration-300">
                 Login
