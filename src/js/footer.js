@@ -7,7 +7,7 @@ const footerControl = () => {
         footer.innerHTML =
             ` 
               <div class="text-md bottom-0 left-0 right-0 text-center   justify-center items-center -mb-4 mt-36" id="invalidFooter"> 
-                  <div class="container mx-auto text-xl flex flex-col md:flex-row items-center justify-between px-6 space-y-4 md:space-y-0">
+                  <div class="container mx-auto text-xl flex flex-col md:flex-row items-center justify-between px-10 space-y-4 md:space-y-0">
 
     <!-- Phone Info -->
     <div class="flex items-center space-x-3">
@@ -32,7 +32,7 @@ const footerControl = () => {
   <!-- Horizontal Line -->
   <hr class="border-gray-700 opacity-30 my-6">
 
-            <div class="container mx-auto lg:px-20 py-8 text-gray-700  flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+            <div class="container mx-auto lg:px-10 py-8 text-gray-700  flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
             
                 <!-- Logo and Social Media -->
                 <div class="flex flex-col  items-center lg:items-start   text-center lg:text-left space-y-4">
